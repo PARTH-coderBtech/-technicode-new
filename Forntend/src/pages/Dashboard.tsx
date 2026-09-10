@@ -43,10 +43,19 @@ const Dashboard = () => {
           setCertificates(
             certificateResponse.data.certificates || []
           );
-        } catch (error) {
-          console.log("Certificates not available yet");
-          setCertificates([]);
-        }
+       } catch (error) {
+  if (axios.isAxiosError(error)) {
+    console.error("CERTIFICATE API ERROR:", {
+      status: error.response?.status,
+      data: error.response?.data,
+      url: error.config?.url,
+    });
+  } else {
+    console.error("CERTIFICATE API ERROR:", error);
+  }
+
+  setCertificates([]);
+}
 
         // ==============================
         // FETCH USER APPLICATIONS
