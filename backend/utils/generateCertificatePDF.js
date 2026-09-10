@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 const QRCode = require("qrcode");
-
+const fs = require("fs");
+const path = require("path");
 const generateCertificatePDF = async (certificate) => {
   const verificationUrl =
     `${process.env.FRONTEND_URL}/verify/${certificate.certificateId}`;
@@ -14,6 +15,16 @@ const generateCertificatePDF = async (certificate) => {
       year: "numeric",
     });
   };
+  
+  const signaturePath = path.join(
+  __dirname,
+  "../assets/signature.png"
+);
+
+const signatureBase64 = fs.readFileSync(signaturePath).toString("base64");
+
+const signatureDataUrl = `data:image/png;base64,${signatureBase64}`;
+
 
   const html = `
 <!DOCTYPE html>
@@ -255,15 +266,18 @@ ${formatDate(certificate.endDate)}
 <div class="bottom">
 
 <div class="signature">
+  <img
+    src="${signatureDataUrl}"
+    class="signature-image"
+  />
 
-<div class="signature-line"></div>
+  <div class="signature-line"></div>
 
-<strong>Authorized Signatory</strong>
-
-<br/>
-
-TechInCode
-
+  <strong>Parth Agrawal</strong>
+  <br/>
+  <span>Co-Founder</span>
+  <br/>
+  <span>TechInCode</span>
 </div>
 
 
