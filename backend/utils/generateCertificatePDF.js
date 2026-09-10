@@ -173,16 +173,34 @@ body {
   align-items: flex-end;
 }
 
+
 .signature {
   text-align: center;
+  width: 220px;
+}
 
-  width: 180px;
+.signature-image {
+  width: 150px;
+  height: 65px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 2px;
 }
 
 .signature-line {
   border-top: 1px solid #333;
+  width: 180px;
+  margin: 0 auto 8px;
+}
 
-  margin-bottom: 8px;
+.signature strong {
+  font-size: 14px;
+  color: #071B2A;
+}
+
+.signature span {
+  font-size: 12px;
+  color: #555;
 }
 
 .qr img {
