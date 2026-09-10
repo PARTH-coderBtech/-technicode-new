@@ -5,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages Imports
+import EditInternship from "./pages/EditInternship";
+import ForgotPassword from "./pages/ForgotPassword";
+import EditProfile from "./pages/EditProfile";
 import InternshipDetails from "./pages/InternshipDetails";
 import VerifyCertificate from "./pages/VerifyCertificate.tsx";
 import GenerateCertificate from "./pages/GenerateCertificate";
@@ -51,6 +54,10 @@ const App = () => {
           <AuthProvider>
             <Routes>
               {/* Public Routes */}
+              <Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/about" element={<About />} />
@@ -67,6 +74,20 @@ const App = () => {
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/internship/:id" element={<InternshipDetails />}/>
+              <Route
+  path="/edit-profile"
+  element={
+      <EditProfile />
+  }
+/>
+<Route
+  path="/admin/edit-internship/:id"
+  element={
+  
+      <EditInternship />
+    
+  }
+/>
               <Route
   path="/dashboard"
   element={

@@ -14,11 +14,6 @@ const internshipSchema = new mongoose.Schema(
   default: "Unpaid"
 },
 
-stipend: {
-  type: String,
-  default: ""
-},
-
     description: {
       type: String,
       required: true,

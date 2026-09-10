@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { useAuth } from "@/context/AuthContext";
-import { Navigate , useNavigate } from "react-router-dom";
+import { Navigate , useNavigate , Link } from "react-router-dom";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -407,14 +407,6 @@ const AddInternship = () => {
       Manage internships and certificates
     </p>
   </div>
-
-  <Button
-    type="button"
-    onClick={() => navigate("/admin/generate-certificate")}
-    className="flex items-center gap-2"
-  >
-    Generate Certificate
-  </Button>
 
 </div>
           <div className="flex items-center gap-3 mb-8">
@@ -1429,21 +1421,26 @@ const AddInternship = () => {
                   </div>
 
 
-                  <Button
+                  <div className="flex items-center gap-2">
 
-                    variant="destructive"
+  {/* EDIT BUTTON */}
+  <Link
+    to={`/admin/edit-internship/${item._id}`}
+    className="inline-flex items-center justify-center h-10 px-4 rounded-md bg-[#00AEEF] text-white text-sm font-semibold hover:opacity-90 transition"
+  >
+    Edit
+  </Link>
 
-                    size="icon"
+  {/* DELETE BUTTON */}
+  <Button
+    variant="destructive"
+    size="icon"
+    onClick={() => handleDelete(item._id)}
+  >
+    <Trash2 className="w-4 h-4" />
+  </Button>
 
-                    onClick={() =>
-                      handleDelete(item._id)
-                    }
-
-                  >
-
-                    <Trash2 className="w-4 h-4" />
-
-                  </Button>
+</div>
 
                 </div>
 

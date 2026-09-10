@@ -244,9 +244,19 @@ const Dashboard = () => {
 
           <div className="bg-white text-black rounded-xl p-6 shadow-sm border border-gray-200">
 
-            <h2 className="text-xl font-bold text-[#071B2A] mb-5">
-              My Profile
-            </h2>
+            <div className="flex justify-between items-center mb-5">
+  <h2 className="text-xl font-bold text-[#071B2A]">
+    My Profile
+  </h2>
+
+  <Link
+    to="/edit-profile"
+    className="bg-[#071B2A] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#0b2a40] transition"
+  >
+    Edit Profile
+  </Link>
+</div>
+
 
 
             <div className="space-y-4">

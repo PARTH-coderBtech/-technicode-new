@@ -28,7 +28,6 @@ const navLinks = [
   { name: "About", path: "/about" },
   { name: "Internships", path: "/internships" },
   { name: "Founders", path: "/founders" },
-  { name: "Testimonials", path: "/testimonials" },
   { name: "Contact", path: "/contact" },
 ];
 

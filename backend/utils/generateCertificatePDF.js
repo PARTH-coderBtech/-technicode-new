@@ -302,9 +302,9 @@ ${certificate.certificateId}
   const page = await browser.newPage();
 
   await page.setContent(html, {
-    waitUntil: "networkidle0",
-  });
-
+  waitUntil: "domcontentloaded",
+  timeout: 60000,
+});
   const pdfBuffer = await page.pdf({
     format: "A4",
     landscape: true,

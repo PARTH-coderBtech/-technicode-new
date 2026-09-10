@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft ,Eye,EyeOff} from "lucide-react";
 import LogoImage from "@/assets/logo.png";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
@@ -16,6 +16,7 @@ export const AuthPage = () => {
 
   // Form states
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -121,10 +122,43 @@ export const AuthPage = () => {
               <Input value={email} onChange={(e) => setEmail(e.target.value)} id="email" type="email" placeholder="name@example.com" required />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input value={password} onChange={(e) => setPassword(e.target.value)} id="password" type="password" placeholder="••••••••" required />
-            </div>
+           <div className="space-y-2">
+  <Label htmlFor="password">Password</Label>
+
+  <div className="relative">
+    <Input
+      id="password"
+      type={showPassword ? "text" : "password"}
+      placeholder="Enter your password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="pr-10"
+      required
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowPassword((prev) => !prev)}
+      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+      aria-label={showPassword ? "Hide password" : "Show password"}
+    >
+      {showPassword ? (
+        <EyeOff className="h-4 w-4" />
+      ) : (
+        <Eye className="h-4 w-4" />
+      )}
+    </button>
+  </div>
+</div>
+<div className="flex justify-end">
+  <button
+    type="button"
+    onClick={() => navigate("/forgot-password")}
+    className="text-sm font-medium text-[#00AEEF] hover:underline"
+  >
+    Forgot Password?
+  </button>
+</div>
 
             <Button disabled={isLoading} type="submit" className="w-full h-11 bg-gradient-to-r from-primary to-purple-600 font-semibold shadow-lg mt-2 text-white">
               {isLoading ? "Processing..." : authMode === "login" ? "Sign In" : "Register Now"}
