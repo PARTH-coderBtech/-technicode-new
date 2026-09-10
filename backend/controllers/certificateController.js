@@ -360,29 +360,29 @@ exports.getMyCertificates = async (req, res) => {
       });
     }
 
+    const normalizedEmail = email.toLowerCase().trim();
+
+    console.log("CERTIFICATE REQUEST EMAIL:", normalizedEmail);
+
     const certificates = await Certificate.find({
-      recipientEmail: email.toLowerCase(),
+      recipientEmail: normalizedEmail,
     }).sort({
       createdAt: -1,
     });
+
+    console.log("CERTIFICATES FOUND:", certificates.length);
 
     res.status(200).json({
       success: true,
       certificates,
     });
-
   } catch (error) {
-
-    console.error(
-      "Fetch User Certificates Error:",
-      error
-    );
+    console.error("Fetch User Certificates Error:", error);
 
     res.status(500).json({
       success: false,
       message: "Failed to fetch user certificates",
     });
-
   }
 };
 // ==========================================
