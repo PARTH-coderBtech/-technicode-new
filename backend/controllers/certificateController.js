@@ -362,7 +362,6 @@ exports.getMyCertificates = async (req, res) => {
 
     const normalizedEmail = email.toLowerCase().trim();
 
-    console.log("CERTIFICATE REQUEST EMAIL:", normalizedEmail);
 
     const certificates = await Certificate.find({
       recipientEmail: normalizedEmail,
@@ -370,7 +369,6 @@ exports.getMyCertificates = async (req, res) => {
       createdAt: -1,
     });
 
-    console.log("CERTIFICATES FOUND:", certificates.length);
 
     res.status(200).json({
       success: true,
